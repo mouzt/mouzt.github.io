@@ -50,10 +50,11 @@ public void register(Object object) {
 * ##post到EventBus
 
 EventBus做了缓存，所有的EventBus都注册到一个Set里面
+//得到所有分发的类型，获取到所有的订阅者，然后插入到消息分发队列中
 
   public void post(Object event) {
     Set<Class<?>> dispatchTypes = flattenHierarchy(event.getClass());
-//得到所有分发的类型，获取到所有的订阅者，然后插入到消息分发队列中
+
     boolean dispatched = false;
     for (Class<?> eventType : dispatchTypes) {
       subscribersByTypeLock.readLock().lock();
@@ -78,9 +79,11 @@ EventBus做了缓存，所有的EventBus都注册到一个Set里面
     dispatchQueuedEvents();
   }
 
-需要分发的消息会被提交到private final ConcurrentLinkedQueue<EventWithSubscriber> eventsToDispatch的队列中
+需要分发的消息会被提交到
+private final ConcurrentLinkedQueue<EventWithSubscriber> eventsToDispatch的队列中
 
 之后进行消息分发
+<pre class="brush: java">
 
 protected void dispatchQueuedEvents() {
     while (true) {
@@ -91,7 +94,7 @@ protected void dispatchQueuedEvents() {
     dispatch(eventWithSubscriber.event, eventWithSubscriber.subscriber);
     }
 }
-
+</pre>
 ###那么为什么要选用ConcurrentLinkedQueue而不是LinkedBlockingQueue呢？
 
 简单来说，ConcurrentLinkedQueue是无锁的，没有synchronized，也没有Lock.lock，依靠CAS保证并发，同时，也不提供阻塞方法put()和take()，速度上面肯定无锁的会更快一些
