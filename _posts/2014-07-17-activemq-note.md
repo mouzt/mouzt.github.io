@@ -7,10 +7,13 @@ tags: [ActiveMQ, 消息队列, 笔记]
 ---
 {% include JB/setup %}
 
-
+[TOC]
 
 实验室的项目需要使用ActiveMQ，目的是为了进行一些耗时间的处理时，不会阻塞程序的主流程。调研ActiveMQ的工作就交给我来做了。
+~~这是一段错误的文本。~~
+这是一个注脚[^footnote]的样例。
 
+这是第二个注脚[^footnote2]的样例。
 ```flow
 st=>start: Start
 op=>operation: Your Operation
