@@ -22,6 +22,14 @@ cond(yes)->e
 cond(no)->op
 ```
 
+| 项目        | 价格   |  数量  |
+| --------   | -----:  | :----:  |
+| 计算机     | $1600 |   5     |
+| 手机        |   $12   |   12   |
+| 管线        |    $1    |  234  |
+
+
+$$\sum^{j-1}_{k=0}{\widehat{\gamma}_{kj} z_k}$$
 我们使用ActiveMQ，需要达到的目的有这么几个
 
 > * 主流程发送消息，不阻塞
@@ -29,7 +37,7 @@ cond(no)->op
 > * 故障恢复
 > * 负载均衡
 
-![我的头像]({{ production_url }}img/3.jpg)
+![我的头像](http://mouzt.github.io/static/img/3.jpg)
 
 从网上看了一些资料，ActiveMQ可以满足我们的要求
 
