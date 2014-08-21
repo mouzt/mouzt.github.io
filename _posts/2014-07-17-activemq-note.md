@@ -7,16 +7,20 @@ tags: [ActiveMQ, 消息队列, 笔记]
 ---
 {% include JB/setup %}
 
-![tool-manager](https://www.zybuluo.com/static/img/toolbar-reader.jpg)
 
-<i class="icon-list"></i> 目录：快速导航当前文稿的目录结构以跳转到感兴趣的段落
-<i class="icon-chevron-sign-left"></i> 视图：互换左边编辑区和右边预览区的位置
-<i class="icon-adjust"></i> 主题：内置了黑白两种模式的主题，试试 **黑色主题**，超炫！
-<i class="icon-desktop"></i> 阅读：心无旁骛的阅读模式提供超一流的阅读体验
-<i class="icon-fullscreen"></i> 全屏：简洁，简洁，再简洁，一个完全沉浸式的写作和阅读环境
 
 实验室的项目需要使用ActiveMQ，目的是为了进行一些耗时间的处理时，不会阻塞程序的主流程。调研ActiveMQ的工作就交给我来做了。
 
+```flow
+st=>start: Start
+op=>operation: Your Operation
+cond=>condition: Yes or No?
+e=>end
+
+st->op->cond
+cond(yes)->e
+cond(no)->op
+```
 
 我们使用ActiveMQ，需要达到的目的有这么几个
 
@@ -25,23 +29,9 @@ tags: [ActiveMQ, 消息队列, 笔记]
 > * 故障恢复
 > * 负载均衡
 
-![我的头像]({{ ASSET_PATH }}/img/3.jpg)
+![我的头像]({{ ASSET_PATH }}img/3.jpg)
 
 从网上看了一些资料，ActiveMQ可以满足我们的要求
-```python
-@requires_authorization
-def somefunc(param1='', param2=0):
-    '''A docstring'''
-    if param1 > param2: # interesting
-        print 'Greater'
-    return (param2 - param1 + 1) or None
-
-class SomeClass:
-    pass
-
->>> message = '''interpreter
-... prompt'''
-```
 
 ## First Step
 
@@ -57,7 +47,6 @@ class SomeClass:
 ## 发送接收消息
 
 这一步应该是初接触ActiveMQ最想要做的事情。我们首先需要一个消息的发送者，同时需要一个消息的接受者。不多说，直接贴代码
-    ``java
     // Sender.java
     import javax.jms.Connection;
     import javax.jms.ConnectionFactory;
