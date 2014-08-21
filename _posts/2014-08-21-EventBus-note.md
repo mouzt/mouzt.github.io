@@ -10,12 +10,12 @@ tags: [EventBus, guava ]
 
 Guava的事件处理机制，是设计模式中的观察者模式（生产/消费者编程模型）
 ##如何使用
->* 定义一个observer，并加入@Subscribe作为消息回调函数
->* 将observer注册到EventBus；EventBus.register(this);
->* 消息投递: eventBus.post(logTo);
+> * 定义一个observer，并加入@Subscribe作为消息回调函数
+> * 将observer注册到EventBus；EventBus.register(this);
+> * 消息投递: eventBus.post(logTo);
 
 ##源码浅浅析
-> 1. 定义Observer
+* 1. 定义Observer
 
 ```java
 class EventBusChangeRecorder {
@@ -26,7 +26,7 @@ class EventBusChangeRecorder {
     }
 }
 ```
-> 2. 注册到EventBus
+* 2. 注册到EventBus
 
 通过一个mutimap存储订阅方法，其中key为参数类型.在一个observer类里面，可以定义多个@Subscribe，根据method.getParameterTypes()[0]来缓存参数的类型
 
@@ -47,7 +47,7 @@ public void register(Object object) {
 
 **@Subscribe所annotate的method的参数，不能支持泛型。因为在运行的时候，因为Type Erasure导致拿不到"真正"的parameterType**
 
-> 2. post到EventBus
+* 2. post到EventBus
 
 EventBus做了缓存，所有的EventBus都注册到一个Set里面
 
@@ -92,9 +92,9 @@ protected void dispatchQueuedEvents() {
     }
 }
 
->那么为什么要选用ConcurrentLinkedQueue而不是LinkedBlockingQueue呢？
+###那么为什么要选用ConcurrentLinkedQueue而不是LinkedBlockingQueue呢？
 
 简单来说，ConcurrentLinkedQueue是无锁的，没有synchronized，也没有Lock.lock，依靠CAS保证并发，同时，也不提供阻塞方法put()和take()，速度上面肯定无锁的会更快一些
 
->* AsyncEventBus
+> * AsyncEventBus
 BlockingQueue implementations are designed to be used primarily for producer-consumer queues
