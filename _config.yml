@@ -32,7 +32,7 @@ start_year: "2014"
 # Else if you are pushing to username.github.com, replace with your username.
 # Finally if you are pushing to a GitHub project page, include the project name at the end.
 #
-production_url : http://blog.EverCoding.net
+production_url : http://mouzt.github.io/
 
 # All Jekyll-Bootstrap specific configurations are namespaced into this hash
 #

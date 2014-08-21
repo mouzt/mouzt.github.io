@@ -29,7 +29,7 @@ cond(no)->op
 > * 故障恢复
 > * 负载均衡
 
-![我的头像]({{ ASSET_PATH }}img/3.jpg)
+![我的头像]({{ production_url }}img/3.jpg)
 
 从网上看了一些资料，ActiveMQ可以满足我们的要求
 
