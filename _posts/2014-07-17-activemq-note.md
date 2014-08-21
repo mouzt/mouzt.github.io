@@ -31,7 +31,7 @@ tags: [ActiveMQ, 消息队列, 笔记]
 ## 发送接收消息
 
 这一步应该是初接触ActiveMQ最想要做的事情。我们首先需要一个消息的发送者，同时需要一个消息的接受者。不多说，直接贴代码
-
+    ``java
     // Sender.java
     import javax.jms.Connection;
     import javax.jms.ConnectionFactory;
