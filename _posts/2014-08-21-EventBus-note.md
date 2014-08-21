@@ -1,9 +1,9 @@
 ---
 layout: post
-title: "ActiveMQ笔记"
-tagline: "ActiveMQ Note"
+title: "EventBus浅浅析"
+tagline: "EventBus Note"
 description: ""
-tags: [ActiveMQ, 消息队列, 笔记]
+tags: [EventBus, guava ]
 ---
 {% include JB/setup %}
 ##EventBus
