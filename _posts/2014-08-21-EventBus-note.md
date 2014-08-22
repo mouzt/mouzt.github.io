@@ -10,9 +10,9 @@ tags: [EventBus, guava ]
 
 Guava的事件处理机制，是设计模式中的观察者模式（生产/消费者编程模型）
 ##如何使用
-> * 定义一个observer，并加入@Subscribe作为消息回调函数
-> * 将observer注册到EventBus；EventBus.register(this);
-> * 消息投递: eventBus.post(logTo);
+ * 定义一个observer，并加入@Subscribe作为消息回调函数
+ * 将observer注册到EventBus；EventBus.register(this);
+ * 消息投递: eventBus.post(logTo);
 
 ##源码浅浅析
 *  ##定义Observer
@@ -83,7 +83,6 @@ EventBus做了缓存，所有的EventBus都注册到一个Set里面
 private final ConcurrentLinkedQueue<EventWithSubscriber> eventsToDispatch的队列中
 
 之后进行消息分发
-<pre class="brush: java">
 
 protected void dispatchQueuedEvents() {
     while (true) {
@@ -94,7 +93,6 @@ protected void dispatchQueuedEvents() {
     dispatch(eventWithSubscriber.event, eventWithSubscriber.subscriber);
     }
 }
-</pre>
 ###那么为什么要选用ConcurrentLinkedQueue而不是LinkedBlockingQueue呢？
 
 简单来说，ConcurrentLinkedQueue是无锁的，没有synchronized，也没有Lock.lock，依靠CAS保证并发，同时，也不提供阻塞方法put()和take()，速度上面肯定无锁的会更快一些
