@@ -53,29 +53,29 @@ EventBus做了缓存，所有的EventBus都注册到一个Set里面
 //得到所有分发的类型，获取到所有的订阅者，然后插入到消息分发队列中
 
     public void post(Object event) {
-    Set<Class<?>> dispatchTypes = flattenHierarchy(event.getClass());
-    boolean dispatched = false;
-    for (Class<?> eventType : dispatchTypes) {
-      subscribersByTypeLock.readLock().lock();
-      try {
-        Set<EventSubscriber> wrappers = subscribersByType.get(eventType);
+        Set<Class<?>> dispatchTypes = flattenHierarchy(event.getClass());
+        boolean dispatched = false;
+        for (Class<?> eventType : dispatchTypes) {
+          subscribersByTypeLock.readLock().lock();
+          try {
+            Set<EventSubscriber> wrappers = subscribersByType.get(eventType);
 
-        if (!wrappers.isEmpty()) {
-          dispatched = true;
-          for (EventSubscriber wrapper : wrappers) {
-            enqueueEvent(event, wrapper);
+            if (!wrappers.isEmpty()) {
+              dispatched = true;
+              for (EventSubscriber wrapper : wrappers) {
+                enqueueEvent(event, wrapper);
+              }
+            }
+          } finally {
+            subscribersByTypeLock.readLock().unlock();
           }
         }
-      } finally {
-        subscribersByTypeLock.readLock().unlock();
-      }
-    }
 
-    if (!dispatched && !(event instanceof DeadEvent)) {
-      post(new DeadEvent(this, event));
-    }
+        if (!dispatched && !(event instanceof DeadEvent)) {
+          post(new DeadEvent(this, event));
+        }
 
-    dispatchQueuedEvents();
+        dispatchQueuedEvents();
     }
 
 需要分发的消息会被提交到
