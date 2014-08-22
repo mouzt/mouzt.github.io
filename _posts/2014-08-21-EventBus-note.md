@@ -98,3 +98,5 @@ protected void dispatchQueuedEvents() {
 > ##AsyncEventBus
 
 BlockingQueue implementations are designed to be used primarily for producer-consumer queues
+
+[SyntaxHighlighter]: http://alexgorbatchev.com/SyntaxHighlighter/
