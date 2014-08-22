@@ -52,7 +52,7 @@ Guava的事件处理机制，是设计模式中的观察者模式（生产/消�
 EventBus做了缓存，所有的EventBus都注册到一个Set里面
 //得到所有分发的类型，获取到所有的订阅者，然后插入到消息分发队列中
 
-  public void post(Object event) {
+    public void post(Object event) {
     Set<Class<?>> dispatchTypes = flattenHierarchy(event.getClass());
     boolean dispatched = false;
     for (Class<?> eventType : dispatchTypes) {
@@ -76,7 +76,7 @@ EventBus做了缓存，所有的EventBus都注册到一个Set里面
     }
 
     dispatchQueuedEvents();
-  }
+    }
 
 需要分发的消息会被提交到
 private final ConcurrentLinkedQueue<EventWithSubscriber> eventsToDispatch的队列中
