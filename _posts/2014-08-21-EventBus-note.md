@@ -17,8 +17,7 @@ Guava的事件处理机制，是设计模式中的观察者模式（生产/消�
 *  消息投递: eventBus.post(logTo);
 
 ##源码浅浅析
-*  ##定义Observer
-
+*  ###定义Observer
 
 class EventBusChangeRecorder {
     // Subscribe annotation，并且只有一个 ChangeEvent 方法参数
@@ -28,14 +27,12 @@ class EventBusChangeRecorder {
     }
 }
 
-* ##注册到EventBus
+* ###注册到EventBus
 
 通过一个mutimap存储订阅方法，其中key为参数类型.在一个observer类里面，可以定义多个@Subscribe，根据method.getParameterTypes()[0]来缓存参数的类型
 
-
 Multimap<Class<?>, EventSubscriber> methodsInListener = HashMultimap.create();
 //SubscriberFindingStrateg.findAllSubscribers(Object)
-//根据注解得到所有的订阅方法
 public void register(Object object) {
     Multimap<Class<?>, EventSubscriber> methodsInListener =
         finder.findAllSubscribers(object);
@@ -56,7 +53,6 @@ EventBus做了缓存，所有的EventBus都注册到一个Set里面
 
   public void post(Object event) {
     Set<Class<?>> dispatchTypes = flattenHierarchy(event.getClass());
-
     boolean dispatched = false;
     for (Class<?> eventType : dispatchTypes) {
       subscribersByTypeLock.readLock().lock();
