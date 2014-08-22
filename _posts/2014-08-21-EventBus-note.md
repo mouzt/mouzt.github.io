@@ -9,7 +9,9 @@ tags: [EventBus, guava ]
 ##EventBus
 
 Guava的事件处理机制，是设计模式中的观察者模式（生产/消费者编程模型）
+
 ##如何使用
+
 *  定义一个observer，并加入@Subscribe作为消息回调函数
 *  将observer注册到EventBus；EventBus.register(this);
 *  消息投递: eventBus.post(logTo);
