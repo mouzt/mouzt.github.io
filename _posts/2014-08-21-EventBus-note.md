@@ -7,6 +7,7 @@ tags: [EventBus, guava ]
 ---
 {% include JB/setup %}
 ##EventBus
+![我的头像](http://mouzt.github.io/static/img/3.jpg)
 
 Guava的事件处理机制，是设计模式中的观察者模式（生产/消费者编程模型）
 
@@ -19,30 +20,30 @@ Guava的事件处理机制，是设计模式中的观察者模式（生产/消�
 ##源码浅浅析
 *  ###定义Observer
 
-class EventBusChangeRecorder {
-    // Subscribe annotation，并且只有一个 ChangeEvent 方法参数
-    @Subscribe
-    public void recordCustomerChange(ChangeEvent e) {
-        recordChange(e.getChange());
+    class EventBusChangeRecorder {
+        // Subscribe annotation，并且只有一个 ChangeEvent 方法参数
+        @Subscribe
+        public void recordCustomerChange(ChangeEvent e) {
+            recordChange(e.getChange());
+        }
     }
-}
 
 * ###注册到EventBus
 
 通过一个mutimap存储订阅方法，其中key为参数类型.在一个observer类里面，可以定义多个@Subscribe，根据method.getParameterTypes()[0]来缓存参数的类型
 
-Multimap<Class<?>, EventSubscriber> methodsInListener = HashMultimap.create();
-//SubscriberFindingStrateg.findAllSubscribers(Object)
-public void register(Object object) {
-    Multimap<Class<?>, EventSubscriber> methodsInListener =
-        finder.findAllSubscribers(object);
-    subscribersByTypeLock.writeLock().lock();
-    try {
-      subscribersByType.putAll(methodsInListener);
-    } finally {
-      subscribersByTypeLock.writeLock().unlock();
-    }
-  }
+    Multimap<Class<?>, EventSubscriber> methodsInListener = HashMultimap.create();
+    //SubscriberFindingStrateg.findAllSubscribers(Object)
+    public void register(Object object) {
+        Multimap<Class<?>, EventSubscriber> methodsInListener =
+            finder.findAllSubscribers(object);
+        subscribersByTypeLock.writeLock().lock();
+        try {
+          subscribersByType.putAll(methodsInListener);
+        } finally {
+          subscribersByTypeLock.writeLock().unlock();
+        }
+      }
 
 **@Subscribe所annotate的method的参数，不能支持泛型。因为在运行的时候，因为Type Erasure导致拿不到"真正"的parameterType**
 
@@ -82,15 +83,15 @@ private final ConcurrentLinkedQueue<EventWithSubscriber> eventsToDispatch的队�
 
 之后进行消息分发
 
-protected void dispatchQueuedEvents() {
-    while (true) {
-        EventWithSubscriber eventWithSubscriber = eventsToDispatch.poll();
-        if (eventWithSubscriber == null) {
-            break;
+    protected void dispatchQueuedEvents() {
+        while (true) {
+            EventWithSubscriber eventWithSubscriber = eventsToDispatch.poll();
+            if (eventWithSubscriber == null) {
+                break;
+            }
+        dispatch(eventWithSubscriber.event, eventWithSubscriber.subscriber);
         }
-    dispatch(eventWithSubscriber.event, eventWithSubscriber.subscriber);
     }
-}
 ###那么为什么要选用ConcurrentLinkedQueue而不是LinkedBlockingQueue呢？
 
 简单来说，ConcurrentLinkedQueue是无锁的，没有synchronized，也没有Lock.lock，依靠CAS保证并发，同时，也不提供阻塞方法put()和take()，速度上面肯定无锁的会更快一些
