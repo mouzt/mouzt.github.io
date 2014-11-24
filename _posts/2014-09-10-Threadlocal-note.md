@@ -24,6 +24,7 @@ ThreadLocal很容易望文生义"本地线程"。其实ThreadLocal并不是一�
 
 *  ThreadLocal的set()方法，set设置的value是引用还是？？？？测试下
 
+
     public T get() {
         Thread t = Thread.currentThread();
         ThreadLocalMap map = getMap(t);
