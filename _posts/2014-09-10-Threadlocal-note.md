@@ -11,15 +11,18 @@ ThreadLocal很容易望文生义"本地线程"。其实ThreadLocal并不是一�
 个独立的副本，每一个线程都可以独立改变自己的副本，而不会影响其他线程所对应的副本。
 
 ##ThreadLocal实现原理
-*  ThreadLocal真正的实现在于ThreadLocal的内部有一个ThreadLocalMap的成员变量
 
     /* ThreadLocal values pertaining to this thread. This map is maintained
-     * by the ThreadLocal class. */
-    ThreadLocal.ThreadLocalMap threadLocals = null;
+         * by the ThreadLocal class. */
+        ThreadLocal.ThreadLocalMap threadLocals = null;
+*  ThreadLocal真正的实现在于ThreadLocal的内部有一个ThreadLocalMap的成员变量
 
 *  ThreadLocalMap的实现跟HashMap的实现差不多,不同的地方在于Hashcode的计算规则，key为Thread本身
 
 *  ThreadLocal的get()方法，可以看出直接在ThreadMap中取map.getEntry(this);
+
+
+*  ThreadLocal的set()方法，set设置的value是引用还是？？？？测试下
 
     public T get() {
         Thread t = Thread.currentThread();
@@ -34,8 +37,6 @@ ThreadLocal很容易望文生义"本地线程"。其实ThreadLocal并不是一�
         }
         return setInitialValue();
     }
-
-*  ThreadLocal的set()方法，set设置的value是引用还是？？？？测试下
 
     public void set(T value) {
         Thread t = Thread.currentThread();
