@@ -59,7 +59,12 @@ ZooKeeper的数据的强一致性,大致步骤
 目录节点是不是就是自己创建的目录节点，如果正是自己创建的，那么它就获得了这个锁，如果不是那么它就调用
 exists(String path, boolean watch) 方法并监控 Zookeeper 上目录节点列表的变化，一直到自己创建的节点是列表中最小编号的目录节点，
 从而获得锁，释放锁很简单，只要删除前面它自己所创建的目录节点就行了。
-redis也能实现进程锁
+缺点：
+注意：
+使用EPHEMERAL会引出一个风险：在非正常情况下，网络延迟比较大会出现session timeout，zookeeper就会认为该client已关闭，从而销毁其id标示，竞争资源的下一个id就可以获取锁。这时可能会有两个process同时拿到锁在跑任务，所以设置好session timeout很重要。
+同样使用PERSISTENT同样会存在一个死锁的风险，进程异常退出后，对应的竞争资源id一直没有删除，下一个id一直无法获取到锁对象。
+
+####redis也能实现进程锁
 
 ![共享锁](http://mouzt.github.io/static/img/4.gif)
 
