@@ -99,6 +99,7 @@ SimpleDataFormat是一个线程不安全的类，多线程的情况下一般使�
     threadLocal.remove();//（听说在某个版本后自动调用这个了，不确定。待定下！）
 
 这样做优点：
+
 *  避免因为线程池的重用而导致的threadlocal变量中get的数据是老线程的数据，而导致不正确
 
 *  在一些Web容器中，比如tomcat、jboss的中，如果不主动释放资源，那么可能会导致out of memory的异常出现。
