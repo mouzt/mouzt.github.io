@@ -1,8 +1,8 @@
 ---
 layout: post
-title: "ZooKeeper(一)有什么用"
-tagline: "zookeeper,分布式"
-description: ""
+title: "ZooKeeper(二)编程例子"
+tagline: "ZooKeeper(二)编程例子"
+description: "ZooKeeper(二)编程例子"
 tags: [zookeeper, 分布式]
 ---
 {% include JB/setup %}
