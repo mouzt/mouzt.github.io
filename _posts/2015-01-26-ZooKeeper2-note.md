@@ -9,12 +9,7 @@ tags: [zookeeper, 分布式]
 
 ###ZooKeeper的java例子
 
-* exist方法只能一次注册一次监听
-* 如何做到永久监听
-
-
     public class ZookeepTest {
-
         private static Map<Watcher.Event.EventType,IFunc> map;
         public static void main(String[] args) throws IOException, KeeperException, InterruptedException {
             map = Maps.newHashMap();
@@ -79,6 +74,9 @@ tags: [zookeeper, 分布式]
         }
     }
 
+
+* exist方法只能一次注册一次监听
+* 如何做到永久监听
 
 ###Exist()方法做到永久监听的解决办法
 
