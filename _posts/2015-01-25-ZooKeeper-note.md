@@ -1,9 +1,9 @@
 ---
 layout: post
-title: "ZooKeeper(一)怎么用"
-tagline: ""
+title: "ZooKeeper(一)有什么用"
+tagline: "zookeeper,分布式"
 description: ""
-tags: [ThreadPool, ThreadLocal]
+tags: [zookeeper, 分布式]
 ---
 {% include JB/setup %}
 ##Zookeeper安装
