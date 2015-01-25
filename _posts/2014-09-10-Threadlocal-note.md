@@ -47,8 +47,7 @@ ThreadLocal很容易望文生义"本地线程"。其实ThreadLocal并不是一�
 *  ThreadLocal的get()方法，可以看出直接在ThreadMap中取map.getEntry(this);
 
 
-*  ThreadLocal的set()方法，set设置的value是引用,
-在单线程中，Map中put的对象是引用关系，取出来之后再赋值，再取出来对象也会发生变化
+*  ThreadLocal的set()方法，set设置的value是引用,在单线程中，Map中put的对象是引用关系，取出来之后再赋值，再取出来对象也会发生变化
 例如下面代码：
 
         Map<String,StringBuffer> map = new HashMap<String,StringBuffer>();
@@ -67,6 +66,7 @@ ThreadLocal很容易望文生义"本地线程"。其实ThreadLocal并不是一�
 
 ##ThreadLocal的应用举例
 SimpleDataFormat是一个线程不安全的类，多线程的情况下一般使用的方式是：
+
 *  每次调用都new出来一个SimpleDataFormat对象
 *  使用加锁的方式使用SimpleDataFormat
 
