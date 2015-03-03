@@ -47,6 +47,7 @@ output {
     output {
       elasticsearch { }
     }
+
 然后创建Grok的patterns目录，主要就是github上clone下来的那个咯~在目录下新建一个叫nginx的文件，内容如下：
 
 
