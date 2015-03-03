@@ -11,20 +11,20 @@ tags: [logstash, 分布式]
 
 然后修改agent.conf：
 
-input {
-  file {
-    type => "nginx"
-    path => ["/var/log/nginx/access.log" ]
-  }
-}
-output {
-  redis {
-    host => "MyHome-1.domain.com"
-    data_type => "channel"
-    key => "nginx"
-    type => "nginx"
-  }
-}
+    input {
+      file {
+        type => "nginx"
+        path => ["/var/log/nginx/access.log" ]
+      }
+    }
+    output {
+      redis {
+        host => "MyHome-1.domain.com"
+        data_type => "channel"
+        key => "nginx"
+        type => "nginx"
+      }
+    }
 启动方式还是一样。
 
 接着修改server.conf:
