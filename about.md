@@ -18,7 +18,7 @@ group: "navigation"
 
 #### 技术
 
-* 网站源码：<https://github.com/iEverX/ieverx.github.com>
+* 网站源码：<https://##.github.com>
 * [Jekyll][]
 * [jQuery][]
 * [purecss][]
@@ -30,11 +30,5 @@ group: "navigation"
 新浪微博: [mztMaySmile][weibo]，有事没事就去逛逛
 github：[mouzt][github]，我的一些代码可以在这里找到
 
-[weibo]: http://weibo.com/ieverx
-[github]: http://github.com/iEverX
-[Jekyll]: http://jekyllrb.com "Transform your plain text into static websites and blogs"
-[Twitter Bootstrap]: http://twitter.github.com/bootstrap/
-[jQuery]: http://jquery.com
-[purecss]: http://purecss.io
-[d3.js]: http://d3js.org
-[d3-cloud]: https://github.com/jasondavies/d3-cloud
+[weibo]: http://weibo.com/mztsmile
+
